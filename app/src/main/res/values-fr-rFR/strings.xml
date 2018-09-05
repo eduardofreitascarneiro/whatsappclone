@@ -43,4 +43,6 @@
     <string name="registerUserError">Erreur d\'enregistrement de l\'utilisateur. Veuillez réessayer plus tard.</string>
     <string name="usedEmail">Adresse e-Mail déjà utilisée</string>
     <string name="weakPassword">Mot de passe faible, créer un mot de passe avec des chiffres, des lettres et des caractères spéciaux</string>
+    <string name="conversation">CONVERSATIONS</string>
+    <string name="contacts">CONTACTS</string>
 </resources>

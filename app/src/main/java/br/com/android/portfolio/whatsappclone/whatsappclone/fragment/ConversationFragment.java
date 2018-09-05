@@ -74,11 +74,11 @@ public class ConversationFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), ConversationActivity.class);
 
                 //Recuperando os dados do usuario para serem passados
-                Conversation conversa = conversas.get(i);
+                Conversation conversation = conversas.get(i);
 
                 //Passando dados para a activity ConversasActivity
-                intent.putExtra("nome", conversa.getName());
-                intent.putExtra("email", Base64Custom.decodeBase64(conversa.getIdUser())  );
+                intent.putExtra("nome", conversation.getName());
+                intent.putExtra("email", Base64Custom.decodeBase64(conversation.getIdUser())  );
 
                 startActivity(intent);
             }
@@ -92,7 +92,7 @@ public class ConversationFragment extends Fragment {
         Preferences preferencias = new Preferences(getActivity());
         String identificadorUsuarioLogado = preferencias.getIdentificador();
         firebase =    Util.getFirebase()
-                .child("conversas")
+                .child("conversations")
                 .child(identificadorUsuarioLogado);
 
         if ( firebase != null ){

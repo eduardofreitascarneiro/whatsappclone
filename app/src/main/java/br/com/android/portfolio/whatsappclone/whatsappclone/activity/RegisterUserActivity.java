@@ -1,27 +1,30 @@
 package br.com.android.portfolio.whatsappclone.whatsappclone.activity;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.DatabaseReference;
+
+import java.util.Date;
 
 import br.com.android.portfolio.whatsappclone.whatsappclone.R;
 import br.com.android.portfolio.whatsappclone.whatsappclone.helper.Preferences;
 import br.com.android.portfolio.whatsappclone.whatsappclone.model.User;
 import br.com.android.portfolio.whatsappclone.whatsappclone.utils.Base64Custom;
 import br.com.android.portfolio.whatsappclone.whatsappclone.utils.Util;
+import br.com.portfolio.common.TestandoModulos;
 
 public class RegisterUserActivity extends BaseActivity{//} AppCompatActivity {
 
@@ -37,7 +40,7 @@ public class RegisterUserActivity extends BaseActivity{//} AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.userRegister_Activity);
+        setContentView(R.layout.user_register_activity);
         init();
     }
 

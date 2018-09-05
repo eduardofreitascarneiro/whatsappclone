@@ -4,6 +4,7 @@ package br.com.android.portfolio.whatsappclone.whatsappclone.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import br.com.android.portfolio.whatsappclone.whatsappclone.activity.Conversatio
 import br.com.android.portfolio.whatsappclone.whatsappclone.adapter.ContactAdapter;
 import br.com.android.portfolio.whatsappclone.whatsappclone.helper.Preferences;
 import br.com.android.portfolio.whatsappclone.whatsappclone.model.Contact;
+import br.com.android.portfolio.whatsappclone.whatsappclone.model.User;
 import br.com.android.portfolio.whatsappclone.whatsappclone.utils.Util;
 
 /**
@@ -36,6 +39,7 @@ public class ContactFragment extends Fragment {
     private ArrayList<Contact> contatos;
     private ValueEventListener valueEventListenerContatos;
     private DatabaseReference firebase;
+    private String contactName;
 
     public ContactFragment() {
         // Required empty public constructor
@@ -73,11 +77,11 @@ public class ContactFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), ConversationActivity.class);
 
                 //Recuperando os dados do usuario para serem passados
-                Contact contato = contatos.get(i);
+                Contact contact = contatos.get(i);
 
                 //Passando dados para a activity ConversasActivity
-                intent.putExtra("nome", contato.getName());
-                intent.putExtra("email", contato.getEmail());
+                intent.putExtra("nome", contact.getName());
+                intent.putExtra("email", contact.getEmail());
 
                 startActivity(intent);
             }
@@ -91,11 +95,11 @@ public class ContactFragment extends Fragment {
 
         Preferences preferencias = new Preferences(getActivity());
         String identificadorUsuarioLogado = preferencias.getIdentificador();
-        firebase =    Util.getFirebase()
-                .child("contatos")
+        firebase = Util.getFirebase()
+                .child("contact")
                 .child(identificadorUsuarioLogado);
 
-        if ( firebase != null ){
+        if (firebase != null) {
 
             valueEventListenerContatos = new ValueEventListener() {
                 @Override
@@ -106,6 +110,8 @@ public class ContactFragment extends Fragment {
                     for (DataSnapshot dados : dataSnapshot.getChildren()) {
                         Contact contato = dados.getValue(Contact.class);
                         if (contato != null) {
+                            //contactName = findUserByContactIdentifier(contato.getContactIdentifier());
+                            //contato.setName(contactName);
                             contatos.add(contato);
                         }
                     }
@@ -117,9 +123,31 @@ public class ContactFragment extends Fragment {
 
                 }
             };
-        }else{
+        } else {
             Toast.makeText(getContext(), R.string.errorConnection, Toast.LENGTH_SHORT).show();
         }
     }
+
+    public String findUserByContactIdentifier(String contactIdentifier) {
+
+        firebase = Util.getFirebase().child("users").child(contactIdentifier);
+
+        firebase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    User user = dataSnapshot.getValue(User.class);
+                    contactName = user.getName();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //Log.e("TAG", databaseError.getMessage());
+            }
+        });
+        return contactName;
+    }
+
 
 }

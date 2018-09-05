@@ -38,12 +38,12 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
             view = inflater.inflate(R.layout.lista_contato, parent, false);
 
             //Recupara elemento para a exibição
-            TextView nomeContato  = (TextView) view.findViewById(R.id.textViewNome);
-            TextView emailContato = (TextView) view.findViewById(R.id.textViewEmail);
+            TextView contactName  = (TextView) view.findViewById(R.id.textViewNome);
+            TextView emailContact = (TextView) view.findViewById(R.id.textViewEmail);
 
-            Contact contato = contatos.get(position);
-            nomeContato.setText(contato.getName());
-            emailContato.setText(contato.getEmail());
+            Contact contact = contatos.get(position);
+            contactName.setText(contact.getName());
+            emailContact.setText(contact.getEmail());
 
         }
 

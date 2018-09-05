@@ -43,4 +43,6 @@
     <string name="registerUserError">Erro ao cadastrar usuário. Tente mais tarde.</string>
     <string name="usedEmail">E-mail já está sendo utlizado</string>
     <string name="weakPassword">Senha fraca, crie a senha com números, letras e caracteres especiais</string>
+    <string name="contacts">CONTATOS</string>
+    <string name="conversation">CONVERSAS</string>
 </resources>

@@ -43,4 +43,6 @@
     <string name="registerUserError">Error al registrar usuario. Intenta más tarde.</string>
     <string name="usedEmail">Correo electronico ya fue usado</string>
     <string name="weakPassword">Contraseña débil, cree la contraseña con números, letras y caracteres especiales</string>
+    <string name="conversation">CONVERSACIONES</string>
+    <string name="contacts">CONTACTOS</string>
 </resources>

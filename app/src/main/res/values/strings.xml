@@ -44,4 +44,6 @@
     <string name="registerUserError">Error registering user. Try later.</string>
     <string name="usedEmail">E-mail already used</string>
     <string name="weakPassword">Weak password, create password with numbers, letters and special characters</string>
+    <string name="conversation">CONVERSATION</string>
+    <string name="contacts">CONTACTS</string>
 </resources>
